@@ -7,18 +7,20 @@ import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { About } from "./components/about";
 
-const key = "32101373489de8753d77e5b434948ffe";
 const lat = 41.154839;
 const long = -81.356392;
+const key = `${process.env.REACT_APP_WEATHER_API_KEY}`;
 
 function App() {
   useEffect(() => {
-    axios
-      .get(
-        `api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${long}&cnt=${7}&appid=${key}`
-      )
-      .then(({ data }) => console.log(data))
-      .catch((error) => console.log(error));
+    console.log(key);
+
+    // axios
+    //   .get(
+    //     `api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${long}&cnt=${7}&appid=${key}`
+    //   )
+    //   .then(({ data }) => console.log(data))
+    //   .catch((error) => console.log(error));
   }, []);
 
   return (
