@@ -1,9 +1,9 @@
 import React from "react";
 
-export const Forecast = () => {
+export const Daily = () => {
   return (
     <>
-      <h1>Forecast</h1>
+      <h1>Daily</h1>
     </>
   );
 };

@@ -1,0 +1,104 @@
+/* general styles */
+:root {
+  --dark-blue: #25252e;
+  --med-blue: #2b2d36;
+  --dark-light-blue: #7b8eb0;
+  --light-blue: #92a8d1;
+}
+
+* {
+  font-family: sans-serif;
+  font-weight: 100;
+  display: border-box;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 0 !important;
+}
+
+
+/* nav styles */
+nav {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  background: var(--dark-blue);
+}
+
+nav h2 {
+  color: white;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+nav ul > * {
+  color: white;
+  text-decoration: none;
+}
+
+h1 {
+  padding: 30px;
+}
+
+/* weekly forecast styles */
+.weekly {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.weekly h1 {
+  position: absolute;
+  top: 100px;
+}
+
+.weekly-report {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.weekly-report-card {
+  outline: 1px solid black;
+  width: calc(100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  gap: 40px;
+} 
+
+.weekly-report-card > * {
+  width: 100%;
+  text-align: left;
+}
+
+.weekly-report-card div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* media queries */
+@media only screen and (min-width: 1468px) {
+  .weekly-report {
+    flex-direction: row;
+  }
+  
+  .weekly-report-card {
+    flex-direction: column;
+  }
+}
