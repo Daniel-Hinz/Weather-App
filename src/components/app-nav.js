@@ -3,12 +3,23 @@ import { Link, Outlet } from "react-router-dom";
 export const AppNav = () => {
   return (
     <>
-      <nav>
-        <h2>Weather App</h2>
+      <nav className="container">
         <ul>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/forecast">Forecast</Link>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <div id="logo">
+            <h2>Weather App</h2>
+          </div>
+          <li>
+            <Link to="/forecast">Forecast</Link>
+          </li>
+          <li>
+            <Link to="/test">Test Code</Link>
+          </li>
         </ul>
       </nav>
 

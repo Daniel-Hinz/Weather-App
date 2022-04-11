@@ -1,104 +1,300 @@
-/* general styles */
 :root {
   --dark-blue: #25252e;
   --med-blue: #2b2d36;
   --dark-light-blue: #7b8eb0;
-  --light-blue: #92a8d1;
+  --light-blue: #071b3f;
+  --navy-blue: #05063f;
+  --dark-yellow: #b49d04;
 }
 
 * {
   font-family: sans-serif;
   font-weight: 100;
-  display: border-box;
+  /* display: border-box; */
   text-align: center;
   margin: 0;
-  padding: 0;
-  margin-bottom: 0 !important;
 }
 
+a:visited {
+  color: inherit;
+}
 
-/* nav styles */
+body {
+  background-image: url("https://images.pexels.com/photos/2246476/pexels-photo-2246476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/*--------------------------------------------------------------
+Navigation
+--------------------------------------------------------------*/
+
 nav {
-  height: 70px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 30px;
-  background: var(--dark-blue);
+  color: white;
+  background: var(--navy-blue);
+  position: fixed;
+  width: 100%;
 }
 
 nav h2 {
+  font-size: 60px;
+}
+
+nav a {
   color: white;
+  text-decoration: none;
+  display: flex;
+  margin: 25px 40px 0 40px;
+}
+
+nav a:hover {
+  color: #25252e;
 }
 
 nav ul {
-  list-style: none;
   display: flex;
   justify-content: center;
+}
+
+nav li {
+  list-style: none;
   align-items: center;
   gap: 20px;
+  font-size: 20px;
 }
 
-nav ul > * {
+nav li:hover {
+  background: var(--dark-light-blue);
+}
+
+#logo {
+  /* color: #25252e; */
+  padding: 5px 60px;
+  /* background-color: #3aaae8; */
+  font-weight: 700;
+  /* text-transform: uppercase; */
+}
+
+/*--------------------------------------------------------------
+Search
+--------------------------------------------------------------*/
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  height: 70vh;
+}
+
+.search {
+  background: #f4f4f4;
+  border: 1px solid #d3d3d3;
+  padding: 2px 5px;
+  margin: auto;
+  width: 50%;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.37);
+  border-radius: 10px;
+  top: 40%;
+  height: 50px;
+
+  /* left: 40%; */
+  /* margin: -22px 0 0 -170px; */
+  /* font: 12px/12px "HelveticaNeue", Helvetica, Arial, sans-serif; */
+}
+
+.search input,
+.search button {
+  float: left;
+}
+
+.search input {
+  background: #fefefe;
+  border: none;
+  margin-right: 5px;
+  padding: 10px;
+  width: 80%;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4) inset,
+    1px 1px 1px rgba(255, 255, 255, 0.75);
+  border-radius: 9px;
+  height: 29px;
+}
+
+.search input:focus {
+  outline: none;
+  box-shadow: 0 0 4px #25252e inset;
+}
+
+.search input::placeholder {
+  font-style: italic;
+}
+
+.search button {
+  background: var(--dark-yellow);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+  width: 16.5%;
+  height: inherit;
+  border-radius: 9px;
+}
+.search button:hover {
+  opacity: 0.7;
+  font-weight: 700;
+}
+
+/*--------------------------------------------------------------
+Test
+--------------------------------------------------------------*/
+
+.today-details {
+  display: flex;
+}
+
+.location {
+  font-size: 34px;
+}
+
+.today-status {
+  font-size: 16px;
+}
+
+.wind {
+  font-size: 14px;
+}
+
+.today-details {
+  justify-content: center;
+  margin-bottom: 12px;
   color: white;
-  text-decoration: none;
 }
 
-h1 {
-  padding: 30px;
+.location {
+  font-size: 56px;
 }
 
-/* weekly forecast styles */
-.weekly {
-  min-height: calc(100vh - 70px);
+.today-status {
+  font-size: 32px;
+}
+
+.wind {
+  font-size: 18px;
+}
+
+.today-status-image {
+  margin-left: 64px;
+  margin-top: 20px;
+  width: 120px;
+  height: 120px;
+}
+
+.weekly-comp {
+  background-image: linear-gradient(to bottom, #b5b5b5, #333333);
+  width: 95%;
+  padding: 15px;
+  border-radius: 15px;
+  margin: auto;
+}
+
+.weekly-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  margin-top: 30px;
 }
 
-.weekly h1 {
-  position: absolute;
-  top: 100px;
+.daily-card {
+  background-color: white;
+  padding: 15px;
+  width: 17%;
+  border-right: 2px solid var(--navy-blue);
 }
 
-.weekly-report {
-  width: 90%;
-  margin: 0 auto;
+.first-card {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.last-card {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border: none;
+}
+
+.daily-card h4 {
+  font-size: 22px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.flex {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 
-.weekly-report-card {
-  outline: 1px solid black;
-  width: calc(100%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  gap: 40px;
-} 
-
-.weekly-report-card > * {
-  width: 100%;
-  text-align: left;
+.temp {
+  font-size: 40px;
 }
 
-.weekly-report-card div {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+.temp,
+.status-img {
+  margin: 0 15px;
+  margin-top: 10%;
 }
 
-/* media queries */
-@media only screen and (min-width: 1468px) {
-  .weekly-report {
-    flex-direction: row;
-  }
-  
-  .weekly-report-card {
-    flex-direction: column;
-  }
+.status-img {
+  width: 70px;
+  height: 70px;
 }
+
+.mini-status-img {
+  width: 30%;
+  margin-top: 10px;
+}
+
+.max-temp,
+.min-temp {
+  font-size: 18px;
+  font-weight: 500;
+  border-right: 1px dotted rgba(106, 106, 106, 0.486);
+  border-bottom: 1px dotted rgba(106, 106, 106, 0.486);
+  padding: 10px;
+}
+
+.mini-img-container {
+  border-bottom: 1px dotted rgba(106, 106, 106, 0.486);
+}
+
+.fifty-percent {
+  width: 50%;
+}
+
+.middle-third {
+  margin: 12px 0;
+  border-top: 1px dotted rgba(106, 106, 106, 0.486);
+}
+
+.icon-status-img {
+  width: 25px;
+  margin: 5px;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.humidity,
+.sunset {
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+/*--------------------------------------------------------------
+Test Code 
+--------------------------------------------------------------*/
