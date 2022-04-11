@@ -35,7 +35,8 @@ Navigation
 nav {
   color: white;
   background: var(--navy-blue);
-  position: fixed;
+  position: sticky;
+  top: 0;
   width: 100%;
 }
 
@@ -98,6 +99,7 @@ Search
   border-radius: 10px;
   top: 40%;
   height: 50px;
+  display: flex;
 
   /* left: 40%; */
   /* margin: -22px 0 0 -170px; */
@@ -195,7 +197,7 @@ Test
   width: 95%;
   padding: 15px;
   border-radius: 15px;
-  margin: auto;
+  margin: 16px auto;
 }
 
 .weekly-container {
