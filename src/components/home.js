@@ -2,9 +2,8 @@ import { Link, Outlet } from "react-router-dom";
 
 export const Home = ({}) => {
   return (
-    <div>
+    <>
       <div className="search-container">
-        <h1>Test</h1>
         <form class="search">
           <input
             type="text"
@@ -17,7 +16,7 @@ export const Home = ({}) => {
       <div className="weekly-comp">
         <div class="today-details">
           <div>
-            <h1 class="location"></h1>
+            <h1 class="location">Kent, OH</h1>
             <p class="today-status">Sunny</p>
             <p class="humidity">78% Humidity</p>
             <p class="wind">5.15 km/h Wind</p>
@@ -315,6 +314,6 @@ export const Home = ({}) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
