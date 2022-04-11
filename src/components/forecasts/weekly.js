@@ -39,9 +39,9 @@ export const Weekly = ({ weather }) => {
                 new Date(day.dt * 1000).getDate()}
             </p>
             <p>
-              {Math.floor(day.temp.max) +
+              {Math.floor(((day.temp.max - 273.15) * 9) / 5 + 32) +
                 "° / " +
-                Math.floor(day.temp.min) +
+                Math.floor(((day.temp.min - 273.15) * 9) / 5 + 32) +
                 "°"}
             </p>
 

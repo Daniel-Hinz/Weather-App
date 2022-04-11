@@ -18,7 +18,7 @@ function App() {
     const setData = async () => {
       axios
         .get(
-          `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&appid=${key}`
+          `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units="fahrenheit"&appid=${key}`
         )
         .then(({ data }) => setWeather(data))
         .catch((error) => console.log(error));
