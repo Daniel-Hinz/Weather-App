@@ -31,7 +31,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<AppNav />}>
-          <Route path="" element={<Home />} />
+          <Route path="" element={<Home weather={weather} />} />
           <Route path="about" element={<About />} />
           <Route path="forecast" element={<Weekly weather={weather} />} />
           <Route

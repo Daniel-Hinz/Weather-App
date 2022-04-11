@@ -3,8 +3,6 @@ import { Link, Outlet } from "react-router-dom";
 export const Test = () => {
   return (
     <div>
-      {/* <h1>Test</h1> */}
-
       <div className="search-container">
         <h1>Test</h1>
         <form class="search">
