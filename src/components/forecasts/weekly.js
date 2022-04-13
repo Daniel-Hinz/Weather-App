@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
+
 const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 const months = [
   "Jan",

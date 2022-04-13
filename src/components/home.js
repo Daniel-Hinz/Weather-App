@@ -19,6 +19,21 @@ const months = [
 export const Home = ({ weather }) => {
   const [current, setCurrent] = useState(weather.current);
   const [days, setDays] = useState(weather.daily);
+  const [city, setCity] = useState("");
+  const [weatherData, setWeatherData] = useState([{}]);
+  const key = `32101373489de8753d77e5b434948ffe`;
+
+  const submit = async (e) => {
+    e.preventDefault();
+    fetch(
+      `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=fahrenheit&appid=${key}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setWeatherData(data);
+      });
+    console.log(city, weatherData);
+  };
 
   useEffect(() => {
     setCurrent(weather.current);
@@ -34,11 +49,15 @@ export const Home = ({ weather }) => {
   return (
     <div>
       <div className="search-container">
-        <form className="search">
+        <form onSubmit={submit} className="search">
           <input
             type="text"
             placeholder="What location do you want to know the weather for?"
             alt="background"
+            onChange={(e) => {
+              setCity(e.target.value);
+            }}
+            value={city}
           />
           <button type="submit">Search</button>
         </form>

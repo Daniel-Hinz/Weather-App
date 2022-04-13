@@ -13,6 +13,8 @@ const long = 81.3393;
 
 function App() {
   const [weather, setWeather] = useState();
+  const [weatherData, setWeatherData] = useState([{}]);
+  const [city, setCity] = useState("");
 
   useEffect(() => {
     const setData = async () => {
@@ -22,15 +24,35 @@ function App() {
       setWeather(res.data);
     };
     setData();
-  }, []);
+  }, [weatherData]);
+
+  const submit = async (e) => {
+    e.preventDefault();
+    fetch(
+      `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=fahrenheit&appid=${key}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setWeatherData(data);
+      });
+  };
 
   return weather ? (
     <div className="App">
       <Routes>
         <Route path="/" element={<AppNav />}>
-          <Route path="" element={<Home weather={weather} />} />
+          <Route
+            path=""
+            element={
+              <Home
+                weather={weather}
+                weatherData={weatherData}
+                submit={submit}
+              />
+            }
+          />
           <Route path="about" element={<About />} />
-          <Route path="forecast" element={<Weekly weather={weather} />} />
+          <Route path="forecast" element={<Weekly weather={weather}/>} />
         </Route>
       </Routes>
     </div>
