@@ -6,45 +6,36 @@ import { Weekly } from "./components/forecasts/weekly";
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { About } from "./components/about";
-import { Test } from "./components/test";
 
 const key = `${process.env.REACT_APP_WEATHER_API_KEY}`;
 const lat = -41.1456;
 const long = 81.3393;
 
 function App() {
-  const [weather, setWeather] = useState({});
+  const [weather, setWeather] = useState();
 
   useEffect(() => {
     const setData = async () => {
-      axios
-        .get(
-          `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&appid=${key}`
-        )
-        .then(({ data }) => setWeather(data))
-        .catch((error) => console.log(error));
+      let res = await axios.get(
+        `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&appid=${key}`
+      );
+      setWeather(res.data);
     };
     setData();
   }, []);
 
-  return (
+  return weather ? (
     <div className="App">
       <Routes>
         <Route path="/" element={<AppNav />}>
-          <Route path="" element={<Home />} />
+          <Route path="" element={<Home weather={weather} />} />
           <Route path="about" element={<About />} />
           <Route path="forecast" element={<Weekly weather={weather} />} />
-          <Route
-            path="test"
-            element={
-              <div>
-                <Test />
-              </div>
-            }
-          />
         </Route>
       </Routes>
     </div>
+  ) : (
+    <></>
   );
 }
 
