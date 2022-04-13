@@ -1,8 +1,6 @@
-import { Link, Outlet } from "react-router-dom";
-
-export const Test = () => {
+export const Footer = () => {
   return (
-    <div>
+    <>
       <footer className="container">
         <div id="logo">
           <h2>Weather App</h2>
@@ -22,6 +20,6 @@ export const Test = () => {
           </li>
         </ul>
       </footer>
-    </div>
+    </>
   );
 };

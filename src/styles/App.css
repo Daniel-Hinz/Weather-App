@@ -19,7 +19,7 @@ a:visited {
   color: inherit;
 }
 
-body {
+.home-container {
   background-image: url("https://images.pexels.com/photos/2246476/pexels-photo-2246476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
   min-height: 100vh;
   background-attachment: fixed;
