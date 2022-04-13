@@ -18,7 +18,7 @@ export const AppNav = () => {
             <Link to="/forecast">Forecast</Link>
           </li>
           <li>
-            <Link to="/test">Test Code</Link>
+            <Link to="/">Placeholder</Link>
           </li>
         </ul>
       </nav>
