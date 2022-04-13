@@ -41,6 +41,7 @@ nav {
 
 nav h2 {
   font-size: 60px;
+  font-weight: 700;
   text-shadow: 2px 2px coral;
 }
 
@@ -67,6 +68,7 @@ nav li {
   gap: 20px;
   font-size: 20px;
   text-shadow: 1px 1px coral;
+  font-weight: 600;
 }
 
 nav li:hover {
@@ -93,22 +95,26 @@ nav li:hover {
 
 .about-header {
   color: whitesmoke;
-  font-weight: 500;
-  font-size: 2.6em;
+  font-weight: 700;
+  font-size: 2.8em;
   padding: 20px;
   text-shadow: 1.5px 1.5px coral;
 }
 
 article ul {
-  padding-top: 30px;
-  background: #ccc;
+  padding-top: 40px;
+  background: white;
   border-radius: 5px;
 }
 
 article li {
   color: black;
   list-style: none;
-  font-weight: 300;
+  font-weight: 500;
+  padding-right: 40px;
+  font-size: 1.4em;
+  line-height: 1.3em;
+  padding-bottom: 50px;
 }
 
 /*--------------------------------------------------------------
