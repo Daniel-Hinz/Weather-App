@@ -8,17 +8,11 @@ export const AppNav = () => {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
           <div id="logo">
             <h2>Weather App</h2>
           </div>
           <li>
-            <Link to="/forecast">Forecast</Link>
-          </li>
-          <li>
-            <Link to="/">Placeholder</Link>
+            <Link to="/about">About</Link>
           </li>
         </ul>
       </nav>
