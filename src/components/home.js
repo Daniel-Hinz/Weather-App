@@ -125,7 +125,9 @@ export const Home = ({ weather, city, setCity, onSubmit }) => {
                       alt="sunset"
                     />
                     <p className="right sunset">
-                      {new Date(day.sunset * 1000).getHours()}
+                      {new Date(day.sunset * 1000).getHours() > 12
+                        ? new Date(day.sunset * 1000).getHours() - 12
+                        : new Date(day.sunset * 1000).getHours()}
                       {new Date(day.sunset * 1000).getMinutes() < 10
                         ? ":0"
                         : ":"}

@@ -1,7 +1,6 @@
 import "./styles/App.css";
 import { Home } from "./components/home";
 import { AppNav } from "./components/app-nav";
-import { Weekly } from "./components/forecasts/weekly";
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { About } from "./components/about";
@@ -23,7 +22,7 @@ function App() {
       setWeather(res.data);
     };
     setData();
-  }, [weather]);
+  }, [lat, lon]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -50,7 +49,6 @@ function App() {
             }
           />
           <Route path="about" element={<About />} />
-          <Route path="forecast" element={<Weekly weather={weather} />} />
         </Route>
       </Routes>
     </div>
