@@ -13,6 +13,7 @@ function App() {
   const [city, setCity] = useState("Kent");
   const [lon, setLon] = useState(81.3579);
   const [lat, setLat] = useState(41.1537);
+  const [input, setInput] = useState("");
 
   useEffect(() => {
     const setData = async () => {
@@ -31,6 +32,7 @@ function App() {
     );
     setLat(res.data.coord.lat);
     setLon(res.data.coord.lon);
+    setCity(input);
   };
 
   return weather ? (
@@ -42,7 +44,7 @@ function App() {
             element={
               <Home
                 onSubmit={onSubmit}
-                setCity={setCity}
+                setInput={setInput}
                 weather={weather}
                 city={city}
               />

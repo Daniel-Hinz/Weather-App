@@ -16,7 +16,7 @@ const months = [
   "Dec",
 ];
 
-export const Home = ({ weather, city, setCity, onSubmit }) => {
+export const Home = ({ weather, city, setInput, onSubmit }) => {
   const [current, setCurrent] = useState(weather.current);
   const [days, setDays] = useState(weather.daily);
 
@@ -38,7 +38,7 @@ export const Home = ({ weather, city, setCity, onSubmit }) => {
           <input
             type="text"
             placeholder="What location do you want to know the weather for?"
-            onChange={(e) => setCity(e.target.value)}
+            onChange={(e) => setInput(e.target.value)}
           />
           <button type="submit">Search</button>
         </form>
