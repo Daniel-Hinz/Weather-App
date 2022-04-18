@@ -184,11 +184,11 @@ export const Home = ({ weather }) => {
   return (
     <div className="home-container">
       <div className="search-container">
-        <form className="search">
+        <form onSubmit={onSubmit} className="search">
           <input
             type="text"
             placeholder="What location do you want to know the weather for?"
-            alt="background"
+            onChange={(e) => setInput(e.target.value)}
           />
           <button type="submit">Search</button>
         </form>
@@ -197,7 +197,7 @@ export const Home = ({ weather }) => {
       <div className="weekly-comp">
         <div className="today-details flex">
           <div>
-            <h1 className="location">Kent, OH</h1>
+            <h1 className="location">{city}</h1>
             <p className="today-status">{current.weather[0].main}</p>
             <p className="humidity">{current.humidity}% Humidity</p>
             <p>
@@ -260,7 +260,9 @@ export const Home = ({ weather }) => {
                       alt="sunset"
                     />
                     <p className="right sunset">
-                      {new Date(day.sunset * 1000).getHours()}
+                      {new Date(day.sunset * 1000).getHours() > 12
+                        ? new Date(day.sunset * 1000).getHours() - 12
+                        : new Date(day.sunset * 1000).getHours()}
                       {new Date(day.sunset * 1000).getMinutes() < 10
                         ? ":0"
                         : ":"}

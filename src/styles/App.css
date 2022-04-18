@@ -41,6 +41,8 @@ nav {
 
 nav h2 {
   font-size: 60px;
+  font-weight: 700;
+  text-shadow: 2px 2px coral;
 }
 
 nav a {
@@ -48,6 +50,7 @@ nav a {
   text-decoration: none;
   display: flex;
   margin: 25px 40px 0 40px;
+  text-transform: uppercase;
 }
 
 nav a:hover {
@@ -64,6 +67,8 @@ nav li {
   align-items: center;
   gap: 20px;
   font-size: 20px;
+  text-shadow: 1px 1px coral;
+  font-weight: 600;
 }
 
 nav li:hover {
@@ -76,6 +81,40 @@ nav li:hover {
   /* background-color: #3aaae8; */
   font-weight: 700;
   /* text-transform: uppercase; */
+}
+
+/* About Page Styles */
+.about-container {
+  margin: 20px 50px;
+  padding-right: 40px;
+  padding-left: 40px;
+  background: var(--navy-blue);
+  border-radius: 10px;
+  height: fit-content;
+}
+
+.about-header {
+  color: whitesmoke;
+  font-weight: 700;
+  font-size: 2.8em;
+  padding: 20px;
+  text-shadow: 1.5px 1.5px coral;
+}
+
+article ul {
+  padding-top: 40px;
+  background: white;
+  border-radius: 5px;
+}
+
+article li {
+  color: black;
+  list-style: none;
+  font-weight: 500;
+  padding-right: 40px;
+  font-size: 1.4em;
+  line-height: 1.3em;
+  padding-bottom: 50px;
 }
 
 /*--------------------------------------------------------------
