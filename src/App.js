@@ -1,36 +1,56 @@
 import "./styles/App.css";
-import axios from "axios";
 import { Home } from "./components/home";
 import { AppNav } from "./components/app-nav";
-import { Weekly } from "./components/forecasts/weekly";
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { About } from "./components/about";
+import axios from "axios";
 
 const key = `${process.env.REACT_APP_WEATHER_API_KEY}`;
-const lat = -41.1456;
-const long = 81.3393;
 
 function App() {
   const [weather, setWeather] = useState();
+  const [city, setCity] = useState("Kent");
+  const [lon, setLon] = useState(81.3579);
+  const [lat, setLat] = useState(41.1537);
+  const [input, setInput] = useState("");
 
   useEffect(() => {
     const setData = async () => {
       let res = await axios.get(
-        `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&appid=${key}`
+        `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${key}`
       );
       setWeather(res.data);
     };
     setData();
-  }, []);
+  }, [lat, lon]);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    let res = await axios.get(
+      `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=fahrenheit&appid=${key}`
+    );
+    setLat(res.data.coord.lat);
+    setLon(res.data.coord.lon);
+    setCity(input);
+  };
 
   return weather ? (
     <div className="App">
       <Routes>
         <Route path="/" element={<AppNav />}>
-          <Route path="" element={<Home weather={weather} />} />
+          <Route
+            path=""
+            element={
+              <Home
+                onSubmit={onSubmit}
+                setInput={setInput}
+                weather={weather}
+                city={city}
+              />
+            }
+          />
           <Route path="about" element={<About />} />
-          <Route path="forecast" element={<Weekly weather={weather} />} />
         </Route>
       </Routes>
     </div>
