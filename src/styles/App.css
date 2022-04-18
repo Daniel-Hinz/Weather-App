@@ -245,14 +245,20 @@ Test
 }
 
 .status-img {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
 }
 
-.mini-status-img {
-  width: 30%;
+.mini-img-container .status-img {
+  width: 30px;
+  height: 30px;
   margin-top: 10px;
 }
+
+/* .mini-status-img {
+  width: 10%;
+  margin-top: 10px;
+} */
 
 .max-temp,
 .min-temp {
