@@ -17,7 +17,6 @@ const months = [
 ];
 
 const GetImage = (val) => {
-  console.log(val);
   switch (val) {
     case "01d":
       return (
