@@ -165,7 +165,6 @@ const GetImage = (val) => {
   }
 };
 
-export const Home = ({ weather }) => {
 export const Home = ({ weather, city, setInput, onSubmit }) => {
   const [current, setCurrent] = useState(weather.current);
   const [days, setDays] = useState(weather.daily);
