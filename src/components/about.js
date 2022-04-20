@@ -28,13 +28,13 @@ export const About = () => {
         <h1 className="about-header">Instructions for Users & Developers</h1>
         <ul>
           <li>
-            <p classname="users">Users</p>
+            <p>Users</p>
             <br />
             Type your desired location into the search bar then press enter or
             click the submit button to see the weather forecast!
           </li>
           <li>
-            <p classname="devs">Developers</p>
+            <p>Developers</p>
             <br />
             In order to clone our project and test it or build around it
             yourself run the following commands on terminal or shell:

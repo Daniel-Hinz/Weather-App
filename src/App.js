@@ -11,7 +11,7 @@ const key = `${process.env.REACT_APP_WEATHER_API_KEY}`;
 function App() {
   const [weather, setWeather] = useState();
   const [city, setCity] = useState("Kent");
-  const [lon, setLon] = useState(81.3579);
+  const [lon, setLon] = useState(-81.3579);
   const [lat, setLat] = useState(41.1537);
   const [input, setInput] = useState("");
 
