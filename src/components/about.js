@@ -25,6 +25,31 @@ export const About = () => {
             underneath.
           </li>
         </ul>
+        <h1 className="about-header">Instructions for Users & Developers</h1>
+        <ul>
+          <li>
+            <p classname="users">Users</p>
+            <br />
+            Type your desired location into the search bar then press enter or
+            click the submit button to see the weather forecast!
+          </li>
+          <li>
+            <p classname="devs">Developers</p>
+            <br />
+            In order to clone our project and test it or build around it
+            yourself run the following commands on terminal or shell:
+            <br />
+            <br />
+            git clone https://github.com/Daniel-Hinz/Weather-App.git (Links to
+            an external site.)
+            <br />
+            npm install
+            <br />
+            npm start
+          </li>
+        </ul>
+        <br />
+        <br />
       </article>
     </>
   );

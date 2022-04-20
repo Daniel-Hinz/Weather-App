@@ -117,6 +117,17 @@ article li {
   padding-bottom: 50px;
 }
 
+li p {
+  text-align: center;
+  color: black;
+  font-weight: 600;
+  padding: 5px;
+  border: 3px solid black;
+  text-transform: uppercase;
+  width: 13.5%;
+  text-shadow: 0.75px 0.75px coral;
+}
+
 /*--------------------------------------------------------------
 Search
 --------------------------------------------------------------*/
