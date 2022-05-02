@@ -204,7 +204,13 @@ export const Home = ({ weather, city, setInput, onSubmit }) => {
               Wind
             </p>
           </div>
-          <div>{GetImage(current.weather[0].icon)}</div>
+
+          <div>
+            <p className="temp">
+              {Math.floor(((current.temp - 273.15) * 9) / 5 + 32)}
+            </p>
+            {GetImage(current.weather[0].icon)}
+          </div>
         </div>
         <div className="weekly-container">
           {days.map((day, i) =>
