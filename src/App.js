@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { About } from "./components/about";
 import axios from "axios";
 
-const key = `${process.env.REACT_APP_WEATHER_API_KEY}`;
+const key = `fc760fbc1a2f1a0426660f9dd56e6b48`;
 
 function App() {
   const [weather, setWeather] = useState();
@@ -14,6 +14,7 @@ function App() {
   const [lon, setLon] = useState(-81.3579);
   const [lat, setLat] = useState(41.1537);
   const [input, setInput] = useState("");
+
 
   useEffect(() => {
     const setData = async () => {
@@ -33,6 +34,7 @@ function App() {
     setLat(res.data.coord.lat);
     setLon(res.data.coord.lon);
     setCity(input);
+    console.log(input, lat, lon, weather);
   };
 
   return weather ? (
@@ -45,6 +47,7 @@ function App() {
               <Home
                 onSubmit={onSubmit}
                 setInput={setInput}
+                input={input}
                 weather={weather}
                 city={city}
               />

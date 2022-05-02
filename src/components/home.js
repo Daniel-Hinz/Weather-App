@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { fetchPlace } from "./autocompleteFunc";
 
 const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 const months = [
@@ -165,9 +166,10 @@ const GetImage = (val) => {
   }
 };
 
-export const Home = ({ weather, city, setInput, onSubmit }) => {
+export const Home = ({ weather, city, setInput, onSubmit, input }) => {
   const [current, setCurrent] = useState(weather.current);
   const [days, setDays] = useState(weather.daily);
+  const [autocompleteCities, setAutocompleteCities] = useState([]);
 
   useEffect(() => {
     setCurrent(weather.current);
@@ -180,15 +182,34 @@ export const Home = ({ weather, city, setInput, onSubmit }) => {
     ];
   };
 
+  const handleOnChange = async (e) => {
+    setInput(e.target.value);
+
+    const res = await fetchPlace(input);
+    !autocompleteCities.includes(e.target.value) &&
+      res.features &&
+      setAutocompleteCities(res.features.map((place) => place.place_name));
+    //code by Wendy de Kock
+    //https://javascript.plainenglish.io/create-a-simple-city-autocomplete-field-in-react-f7675d249c74
+  };
+
   return (
     <div className="home-container">
       <div className="search-container">
         <form onSubmit={onSubmit} className="search">
           <input
+            list="places"
             type="text"
             placeholder="What location do you want to know the weather for?"
-            onChange={(e) => setInput(e.target.value)}
+            onChange={handleOnChange}
+            pattern={autocompleteCities.join("|")}
+            autoComplete="off"
           />
+          <datalist id="places">
+            {autocompleteCities.map((input, i) => (
+              <option key={i}>{input}</option>
+            ))}
+          </datalist> 
           <button type="submit">Search</button>
         </form>
       </div>
