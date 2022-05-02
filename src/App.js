@@ -5,6 +5,9 @@ import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { About } from "./components/about";
 import axios from "axios";
+import { Toggle } from "./components/toggle";
+import { Footer } from "./components/footer";
+import { Forecast } from "./components/forecast";
 
 const key = `${process.env.REACT_APP_WEATHER_API_KEY}`;
 
@@ -37,6 +40,7 @@ function App() {
 
   return weather ? (
     <div className="App">
+      <Toggle />
       <Routes>
         <Route path="/" element={<AppNav />}>
           <Route
@@ -50,9 +54,11 @@ function App() {
               />
             }
           />
+          <Route path="forecast" element={<Forecast />}></Route>
           <Route path="about" element={<About />} />
         </Route>
       </Routes>
+      <Footer />
     </div>
   ) : (
     <></>
