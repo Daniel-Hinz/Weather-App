@@ -43,18 +43,19 @@ function App() {
       <Toggle />
       <Routes>
         <Route path="/" element={<AppNav />}>
+          <Route path="" element={<Home />} />
           <Route
-            path=""
+            path="forecast"
             element={
-              <Home
+              <Forecast
                 onSubmit={onSubmit}
                 setInput={setInput}
                 weather={weather}
+                input={input}
                 city={city}
               />
             }
-          />
-          <Route path="forecast" element={<Forecast />}></Route>
+          ></Route>
           <Route path="about" element={<About />} />
         </Route>
       </Routes>

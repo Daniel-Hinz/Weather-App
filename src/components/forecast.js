@@ -1,13 +1,78 @@
 import React from "react";
-import SearchIcon from "../imgs/icons8-search-64.png";
-import Sun from "../WeatherIcons/fill/all/clear-day.svg";
 import { Weekly } from "./weekly";
+import SearchIcon from "../imgs/icons8-search-64.png";
+import Cloudy from "../WeatherIcons/fill/all/cloudy.svg";
+import Sun from "../WeatherIcons/fill/all/clear-day.svg";
+import PartlyCloudy from "../WeatherIcons/fill/all/partly-cloudy-day.svg";
 
-export const Forecast = () => {
+const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+const getImage = (val) => {
+  switch (val) {
+    case "01d":
+      return Sun;
+    case "01n":
+      return PartlyCloudy;
+    case "02d":
+      return PartlyCloudy;
+    case "02n":
+      return PartlyCloudy;
+    case "03d":
+      return PartlyCloudy;
+    case "03n":
+      return PartlyCloudy;
+    case "04d":
+      return PartlyCloudy;
+    case "04n":
+      return PartlyCloudy;
+    case "09d":
+      return PartlyCloudy;
+    case "09n":
+      return PartlyCloudy;
+    case "10d":
+      return PartlyCloudy;
+    case "10n":
+      return PartlyCloudy;
+    case "11d":
+      return PartlyCloudy;
+    case "11n":
+      return PartlyCloudy;
+    case "13d":
+      return PartlyCloudy;
+    case "13n":
+      return PartlyCloudy;
+    case "50d":
+      return PartlyCloudy;
+    case "50n":
+      return PartlyCloudy;
+    default:
+      return Cloudy;
+  }
+};
+const getDirection = (angle) => {
+  return directions[
+    Math.round(((angle %= 360) < 0 ? angle + 360 : angle) / 45) % 8
+  ];
+};
+
+export const Forecast = ({ onSubmit, setInput, weather, city, input }) => {
   return (
     <>
-      <div classNameName="FullPage min-h-screen ">
-        <form classNameName="Search">
+      <div className="FullPage min-h-screen ">
+        <form className="Search">
           <div className="box pt-6 w-3/4 mx-auto py-8">
             <div className="box-wrapper">
               <div className=" bg-white rounded-full flex items-center w-full p-3 shadow-sm border border-gray-200">
@@ -15,6 +80,7 @@ export const Forecast = () => {
                   <img
                     src={SearchIcon}
                     className=" w-6 text-gray-600 h-5 cursor-pointer"
+                    alt="weather-img"
                   />
                 </button>
                 <input
@@ -23,20 +89,6 @@ export const Forecast = () => {
                   x-model="q"
                   className="w-full pl-4 text-sm outline-none focus:outline-none bg-transparent"
                 />
-                <div className="select border-l border-solid border-gray-700">
-                  <select
-                    name=""
-                    id=""
-                    x-model="image_type"
-                    className="text-sm outline-none focus:outline-none bg-transparent"
-                  >
-                    <option value="all" selected>
-                      Metric
-                    </option>
-                    <option value="photo">Celcius</option>
-                    <option value="illustration">Fareneheit</option>
-                  </select>
-                </div>
               </div>
             </div>
           </div>
@@ -49,47 +101,136 @@ export const Forecast = () => {
                 <div className="w-full bg-blue-400 text-white rounded-tl-xl">
                   <div className="pl-8">
                     <h2 className="font-bold text-3xl leading-none pb-1">
-                      Kent, Ohio, United States
+                      {input}
                     </h2>
-                    <h3 className="leading-none pb-2 pl-1">May 1st</h3>
+                    <h3 className="leading-none pb-2 pl-1">
+                      {months[new Date(weather.current.dt * 1000).getMonth()] +
+                        " " +
+                        new Date(weather.current.dt * 1000).getDate()}
+                    </h3>
                   </div>
                   <div>
-                    <img className="w-96 m-auto" src={Sun} />
+                    <img className="w-96 m-auto" src={Sun} alt="weather-img" />
                   </div>
                   <div className="pl-8">
                     <strong className="text-6xl block font-weight-bolder">
-                      29ºC
+                      {Math.floor(
+                        ((weather.current.temp - 273.15) * 9) / 5 + 32
+                      )}
+                      °
                     </strong>
-                    <b className="text-2xl block font-bold">Sunny</b>
+                    <b className="text-2xl block font-bold">
+                      {weather.current.weather.main}
+                    </b>
                   </div>
                 </div>
               </div>
 
               <div className="w-2/4 flex ml-0">
                 <div className="bg-gray-800 text-white p-8 w-full rounded-tr-xl">
-                  <div className="flex justify-between w-64 mb-4 w-full">
+                  <div className="flex justify-between mb-4 w-full">
                     <div className="w-auto font-bold uppercase text-90">
-                      Precipitation
+                      Sunrise
                     </div>
-                    <div className="w-auto text-right">10 %</div>
+                    <div className="w-auto text-right">
+                      {new Date(weather.current.sunrise * 1000).getHours() > 12
+                        ? new Date(weather.current.sunrise * 1000).getHours() -
+                          12
+                        : new Date(weather.current.sunrise * 1000).getHours()}
+                      {new Date(weather.current.sunrise * 1000).getMinutes() <
+                      10
+                        ? ":0"
+                        : ":"}
+                      {new Date(weather.current.sunrise * 1000).getMinutes()} am
+                    </div>
                   </div>
-                  <div className="flex justify-between w-64 mb-4 w-full">
+                  <div className="flex justify-between mb-4 w-full">
+                    <div className="w-auto font-bold uppercase text-90">
+                      Sunset
+                    </div>
+                    <div className="w-auto text-right">
+                      {new Date(weather.current.sunset * 1000).getHours() > 12
+                        ? new Date(weather.current.sunset * 1000).getHours() -
+                          12
+                        : new Date(weather.current.sunset * 1000).getHours()}
+                      {new Date(weather.current.sunset * 1000).getMinutes() < 10
+                        ? ":0"
+                        : ":"}
+                      {new Date(weather.current.sunset * 1000).getMinutes()} pm
+                    </div>
+                  </div>
+                  <div className="flex justify-between mb-4 w-full">
+                    <div className="w-auto font-bold uppercase text-90">
+                      Feels Like
+                    </div>
+                    <div className="w-auto text-right">
+                      {Math.floor(
+                        ((weather.current.feels_like - 273.15) * 9) / 5 + 32
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex justify-between mb-4 w-full">
+                    <div className="w-auto font-bold uppercase text-90">
+                      Pressure
+                    </div>
+                    <div className="w-auto text-right">
+                      {weather.current.pressure}
+                    </div>
+                  </div>
+                  <div className="flex justify-between mb-4 w-full">
                     <div className="w-auto font-bold uppercase text-90">
                       Humidity
                     </div>
-                    <div className="w-auto text-right">29 %</div>
+                    <div className="w-auto text-right">
+                      {weather.current.humidity}
+                    </div>
                   </div>
-                  <div className="flex justify-between w-64 mb-8 w-full">
+                  <div className="flex justify-between mb-4 w-full">
+                    <div className="w-auto font-bold uppercase text-90">
+                      Dew Point
+                    </div>
+                    <div className="w-auto text-right">
+                      {weather.current.dew_point}
+                    </div>
+                  </div>
+                  <div className="flex justify-between mb-4 w-full">
+                    <div className="w-auto font-bold uppercase text-90">
+                      UV index
+                    </div>
+                    <div className="w-auto text-right">
+                      {weather.current.uvi}
+                    </div>
+                  </div>
+                  <div className="flex justify-between mb-4 w-full">
+                    <div className="w-auto font-bold uppercase text-90">
+                      Clouds
+                    </div>
+                    <div className="w-auto text-right">
+                      {weather.current.clouds}
+                    </div>
+                  </div>
+                  <div className="flex justify-between mb-4 w-full">
+                    <div className="w-auto font-bold uppercase text-90">
+                      Visibility
+                    </div>
+                    <div className="w-auto text-right">
+                      {weather.current.visibility}
+                    </div>
+                  </div>
+                  <div className="flex justify-between mb-4 w-full">
                     <div className="w-auto font-bold uppercase text-90">
                       Wind
                     </div>
-                    <div className="w-auto text-right">12 Mph</div>
+                    <div className="w-auto text-right">
+                      {weather.current.wind_speed} mph
+                      {" " + getDirection(weather.current.wind_deg)}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <Weekly />
+            <Weekly weather={weather} />
           </div>
         </main>
       </div>

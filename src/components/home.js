@@ -260,7 +260,7 @@ export const Home = ({ weather, city, setInput, onSubmit }) => {
 
                   <div className="fifty-percent">
                     <img
-                      class="icon-status-img right"
+                      className="icon-status-img right"
                       src="https://cdn-icons-png.flaticon.com/512/287/287668.png"
                       alt="sunset"
                     />
