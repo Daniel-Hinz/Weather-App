@@ -166,7 +166,7 @@ const GetImage = (val) => {
   }
 };
 
-export const Home = ({ weather, city, setInput, onSubmit, input }) => {
+export const Home = ({ weather, city, setCity, onSubmit }) => {
   const [current, setCurrent] = useState(weather.current);
   const [days, setDays] = useState(weather.daily);
   const [autocompleteCities, setAutocompleteCities] = useState([]);
@@ -183,9 +183,9 @@ export const Home = ({ weather, city, setInput, onSubmit, input }) => {
   };
 
   const handleOnChange = async (e) => {
-    setInput(e.target.value);
+    setCity(e.target.value);
 
-    const res = await fetchPlace(input);
+    const res = await fetchPlace(city);
     !autocompleteCities.includes(e.target.value) &&
       res.features &&
       setAutocompleteCities(res.features.map((place) => place.place_name));
@@ -209,7 +209,7 @@ export const Home = ({ weather, city, setInput, onSubmit, input }) => {
             {autocompleteCities.map((input, i) => (
               <option key={i}>{input}</option>
             ))}
-          </datalist> 
+          </datalist>
           <button type="submit">Search</button>
         </form>
       </div>
