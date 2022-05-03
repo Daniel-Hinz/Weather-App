@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-// import PartlyCloudy from "../WeatherIcons/fill/all/partly-cloudy-day.svg";
+import PartlyCloudy from "../WeatherIcons/fill/all/partly-cloudy-day.svg";
 import SearchIcon from "../imgs/icons8-search-64.png";
-// import Cloudy from "../WeatherIcons/fill/all/cloudy.svg";
-// import Sun from "../WeatherIcons/fill/all/clear-day.svg";
 import { Weekly } from "./weekly";
 import axios from "axios";
 
@@ -27,43 +25,43 @@ const months = [
 const getImage = (val) => {
   switch (val) {
     case "01d":
-      return "Sun";
+      return PartlyCloudy;
     case "01n":
-      return "PartlyCloudy";
+      return PartlyCloudy;
     case "02d":
-      return "PartlyCloudy";
+      return PartlyCloudy;
     case "02n":
-      return "PartlyCloudy";
+      return PartlyCloudy;
     case "03d":
-      return "PartlyCloudy";
+      return PartlyCloudy;
     case "03n":
-      return "PartlyCloudy";
+      return PartlyCloudy;
     case "04d":
-      return "PartlyCloudy";
+      return PartlyCloudy;
     case "04n":
-      return "PartlyCloudy";
+      return PartlyCloudy;
     case "09d":
-      return "PartlyCloudy";
+      return PartlyCloudy;
     case "09n":
-      return "PartlyCloudy";
+      return PartlyCloudy;
     case "10d":
-      return "PartlyCloudy";
+      return PartlyCloudy;
     case "10n":
-      return "PartlyCloudy";
+      return PartlyCloudy;
     case "11d":
-      return "PartlyCloudy";
+      return PartlyCloudy;
     case "11n":
-      return "PartlyCloudy";
+      return PartlyCloudy;
     case "13d":
-      return "PartlyCloudy";
+      return PartlyCloudy;
     case "13n":
-      return "PartlyCloudy";
+      return PartlyCloudy;
     case "50d":
-      return "PartlyCloudy";
+      return PartlyCloudy;
     case "50n":
-      return "PartlyCloudy";
+      return PartlyCloudy;
     default:
-      return "Cloudy";
+      return PartlyCloudy;
   }
 };
 const getDirection = (angle) => {

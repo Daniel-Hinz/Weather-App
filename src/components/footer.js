@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
@@ -64,28 +65,28 @@ export const Footer = () => {
                   </span>
                   <ul className="list-unstyled pl-2">
                     <li>
-                      <a
+                      <Link
+                        to="/"
                         className=" hover: font-semibold block pb-2 text-sm"
-                        href="#"
-                      >
-                        About
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className=" hover: font-semibold block pb-2 text-sm"
-                        href="#"
-                      >
-                        Forecast
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className=" hover: font-semibold block pb-2 text-sm"
-                        href="#"
                       >
                         Home
-                      </a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/forecast"
+                        className=" hover: font-semibold block pb-2 text-sm"
+                      >
+                        Forecast
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/about"
+                        className=" hover: font-semibold block pb-2 text-sm"
+                      >
+                        About
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -97,7 +98,7 @@ export const Footer = () => {
                     <li>
                       <a
                         className=" hover: font-semibold block pb-2 text-sm"
-                        href="#"
+                        href="https://github.com/Daniel-Hinz/Weather-App"
                       >
                         Github
                       </a>
@@ -105,7 +106,7 @@ export const Footer = () => {
                     <li>
                       <a
                         className=" hover: font-semibold block pb-2 text-sm"
-                        href="#"
+                        href="https://reactjs.org/"
                       >
                         React
                       </a>
@@ -113,7 +114,7 @@ export const Footer = () => {
                     <li>
                       <a
                         className=" hover: font-semibold block pb-2 text-sm"
-                        href="#"
+                        href="https://tailwindui.com/documentation"
                       >
                         Tailwind
                       </a>
@@ -121,7 +122,7 @@ export const Footer = () => {
                     <li>
                       <a
                         className=" hover: font-semibold block pb-2 text-sm"
-                        href="#"
+                        href="https://openweathermap.org/api"
                       >
                         Open Weather API
                       </a>
