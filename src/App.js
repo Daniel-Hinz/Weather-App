@@ -1,10 +1,13 @@
 import "./styles/App.css";
+import axios from "axios";
 import { Home } from "./components/home";
+import { About } from "./components/about";
+import { useState, useEffect } from "react";
+import { Toggle } from "./components/toggle";
+import { Footer } from "./components/footer";
 import { AppNav } from "./components/app-nav";
 import { Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { About } from "./components/about";
-import axios from "axios";
+import { Forecast } from "./components/forecast";
 
 const key = `fc760fbc1a2f1a0426660f9dd56e6b48`;
 
@@ -36,22 +39,26 @@ function App() {
 
   return weather ? (
     <div className="App">
+      <Toggle />
       <Routes>
         <Route path="/" element={<AppNav />}>
+          <Route path="" element={<Home />} />
           <Route
-            path=""
+            path="forecast"
             element={
-              <Home
-                onSubmit={onSubmit}
+              <Forecast
                 setCity={setCity}
+                setLat={setLat}
+                setLon={setLon}
                 weather={weather}
                 city={city}
               />
             }
-          />
+          ></Route>
           <Route path="about" element={<About />} />
         </Route>
       </Routes>
+      <Footer />
     </div>
   ) : (
     <></>
