@@ -27,16 +27,6 @@ function App() {
     setData();
   }, [lat, lon]);
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    let res = await axios.get(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=fahrenheit&appid=${key}`
-    );
-    setLat(res.data.coord.lat);
-    setLon(res.data.coord.lon);
-    setCity("");
-  };
-
   return weather ? (
     <div className="App">
       <Toggle />

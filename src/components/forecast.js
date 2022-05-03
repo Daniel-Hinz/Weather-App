@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Weekly } from "./weekly";
+// import PartlyCloudy from "../WeatherIcons/fill/all/partly-cloudy-day.svg";
 import SearchIcon from "../imgs/icons8-search-64.png";
-import Cloudy from "../WeatherIcons/fill/all/cloudy.svg";
-import Sun from "../WeatherIcons/fill/all/clear-day.svg";
+// import Cloudy from "../WeatherIcons/fill/all/cloudy.svg";
+// import Sun from "../WeatherIcons/fill/all/clear-day.svg";
+import { Weekly } from "./weekly";
 import axios from "axios";
-import PartlyCloudy from "../WeatherIcons/fill/all/partly-cloudy-day.svg";
 
 const weatherKey = `${process.env.REACT_APP_WEATHER_API_KEY}`;
 const locationKey = `${process.env.REACT_APP_LOCATION_API_KEY}`;
@@ -27,43 +27,43 @@ const months = [
 const getImage = (val) => {
   switch (val) {
     case "01d":
-      return Sun;
+      return "Sun";
     case "01n":
-      return PartlyCloudy;
+      return "PartlyCloudy";
     case "02d":
-      return PartlyCloudy;
+      return "PartlyCloudy";
     case "02n":
-      return PartlyCloudy;
+      return "PartlyCloudy";
     case "03d":
-      return PartlyCloudy;
+      return "PartlyCloudy";
     case "03n":
-      return PartlyCloudy;
+      return "PartlyCloudy";
     case "04d":
-      return PartlyCloudy;
+      return "PartlyCloudy";
     case "04n":
-      return PartlyCloudy;
+      return "PartlyCloudy";
     case "09d":
-      return PartlyCloudy;
+      return "PartlyCloudy";
     case "09n":
-      return PartlyCloudy;
+      return "PartlyCloudy";
     case "10d":
-      return PartlyCloudy;
+      return "PartlyCloudy";
     case "10n":
-      return PartlyCloudy;
+      return "PartlyCloudy";
     case "11d":
-      return PartlyCloudy;
+      return "PartlyCloudy";
     case "11n":
-      return PartlyCloudy;
+      return "PartlyCloudy";
     case "13d":
-      return PartlyCloudy;
+      return "PartlyCloudy";
     case "13n":
-      return PartlyCloudy;
+      return "PartlyCloudy";
     case "50d":
-      return PartlyCloudy;
+      return "PartlyCloudy";
     case "50n":
-      return PartlyCloudy;
+      return "PartlyCloudy";
     default:
-      return Cloudy;
+      return "Cloudy";
   }
 };
 const getDirection = (angle) => {
@@ -75,7 +75,7 @@ const getDirection = (angle) => {
 export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
   const [autocompleteCities, setAutocompleteCities] = useState([]);
 
-  const handleOnChange = async (e) => {
+  const handleChange = async (e) => {
     setCity(e.target.value);
     await axios
       .get(
@@ -116,7 +116,7 @@ export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
                   className="w-full pl-4 text-sm outline-none focus:outline-none bg-transparent"
                   pattern={autocompleteCities.join("|")}
                   placeholder="Search by Location"
-                  onChange={handleOnChange}
+                  onChange={handleChange}
                   autoComplete="off"
                   name="location"
                   type="search"
@@ -273,7 +273,12 @@ export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
               </div>
             </div>
 
-            <Weekly weather={weather} />
+            <Weekly
+              getDirection={getDirection}
+              getImage={getImage}
+              weather={weather}
+              months={months}
+            />
           </div>
         </main>
       </div>
