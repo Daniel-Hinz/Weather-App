@@ -122,7 +122,7 @@ export const Weekly = ({ weather }) => {
             </div>
           </div>
         ) : (
-          <></>
+          <React.Fragment key={i}></React.Fragment>
         );
       })}
     </div>

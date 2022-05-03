@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Weekly } from "./weekly";
 import SearchIcon from "../imgs/icons8-search-64.png";
 import Cloudy from "../WeatherIcons/fill/all/cloudy.svg";
 import Sun from "../WeatherIcons/fill/all/clear-day.svg";
+import axios from "axios";
 import PartlyCloudy from "../WeatherIcons/fill/all/partly-cloudy-day.svg";
+
+const weatherKey = `${process.env.REACT_APP_WEATHER_API_KEY}`;
+const locationKey = `${process.env.REACT_APP_LOCATION_API_KEY}`;
 
 const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 const months = [
@@ -68,11 +72,36 @@ const getDirection = (angle) => {
   ];
 };
 
-export const Forecast = ({ onSubmit, setInput, weather, city, input }) => {
+export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
+  const [autocompleteCities, setAutocompleteCities] = useState([]);
+
+  const handleOnChange = async (e) => {
+    setCity(e.target.value);
+    await axios
+      .get(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${city}.json?access_token=${locationKey}&cachebuster=1625641871908&autocomplete=true&types=place`
+      )
+      .then(({ data: { features } }) =>
+        setAutocompleteCities(features.map((p) => p.place_name))
+      )
+      .catch((err) => console.log(err));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const res = await axios.get(
+      `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=fahrenheit&appid=${weatherKey}`
+    );
+    setLat(res.data.coord.lat);
+    setLon(res.data.coord.lon);
+    setCity("");
+  };
+
   return (
     <>
       <div className="FullPage min-h-screen ">
-        <form className="Search">
+        <form className="Search" onSubmit={handleSubmit}>
           <div className="box pt-6 w-3/4 mx-auto py-8">
             <div className="box-wrapper">
               <div className=" bg-white rounded-full flex items-center w-full p-3 shadow-sm border border-gray-200">
@@ -84,12 +113,22 @@ export const Forecast = ({ onSubmit, setInput, weather, city, input }) => {
                   />
                 </button>
                 <input
-                  type="search"
-                  placeholder="Search by Location"
-                  x-model="q"
                   className="w-full pl-4 text-sm outline-none focus:outline-none bg-transparent"
+                  pattern={autocompleteCities.join("|")}
+                  placeholder="Search by Location"
+                  onChange={handleOnChange}
+                  autoComplete="off"
+                  name="location"
+                  type="search"
+                  list="places"
+                  x-model="q"
                 />
               </div>
+              <datalist id="places">
+                {autocompleteCities.map((input, i) => (
+                  <option value={input} key={i}></option>
+                ))}
+              </datalist>
             </div>
           </div>
         </form>
@@ -101,7 +140,7 @@ export const Forecast = ({ onSubmit, setInput, weather, city, input }) => {
                 <div className="w-full bg-blue-400 text-white rounded-tl-xl">
                   <div className="pl-8">
                     <h2 className="font-bold text-3xl leading-none pb-1">
-                      {input}
+                      {city}
                     </h2>
                     <h3 className="leading-none pb-2 pl-1">
                       {months[new Date(weather.current.dt * 1000).getMonth()] +
@@ -110,7 +149,11 @@ export const Forecast = ({ onSubmit, setInput, weather, city, input }) => {
                     </h3>
                   </div>
                   <div>
-                    <img className="w-96 m-auto" src={Sun} alt="weather-img" />
+                    <img
+                      className="w-96 m-auto"
+                      src={getImage(weather.current.weather[0].icon)}
+                      alt="weather-img"
+                    />
                   </div>
                   <div className="pl-8">
                     <strong className="text-6xl block font-weight-bolder">
