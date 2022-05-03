@@ -9,7 +9,7 @@ import { AppNav } from "./components/app-nav";
 import { Routes, Route } from "react-router-dom";
 import { Forecast } from "./components/forecast";
 
-const key = `${process.env.REACT_APP_WEATHER_API_KEY}`;
+const key = `fc760fbc1a2f1a0426660f9dd56e6b48`;
 
 function App() {
   const [weather, setWeather] = useState();
@@ -26,6 +26,16 @@ function App() {
     };
     setData();
   }, [lat, lon]);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    let res = await axios.get(
+      `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=fahrenheit&appid=${key}`
+    );
+    setLat(res.data.coord.lat);
+    setLon(res.data.coord.lon);
+    setCity("");
+  };
 
   return weather ? (
     <div className="App">
