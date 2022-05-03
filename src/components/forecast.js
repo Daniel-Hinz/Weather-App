@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-
 import { Weekly } from "./weekly";
 import SearchIcon from "../imgs/icons8-search-64.png";
-
 import PartlyCloudy from "../WeatherIcons/fill/all/partly-cloudy-day.svg";
-
-const weatherKey = `${process.env.REACT_APP_WEATHER_API_KEY}`;
-const locationKey = `${process.env.REACT_APP_LOCATION_API_KEY}`;
 
 const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 const months = [
@@ -73,6 +68,8 @@ const getDirection = (angle) => {
 };
 
 export const Forecast = ({
+  locationKey,
+  weatherKey,
   setCity,
   setInput,
   setLat,
