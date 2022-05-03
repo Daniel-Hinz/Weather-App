@@ -13,6 +13,7 @@ const key = `fc760fbc1a2f1a0426660f9dd56e6b48`;
 
 function App() {
   const [weather, setWeather] = useState();
+  const [input, setInput] = useState();
   const [city, setCity] = useState("Kent");
   const [lon, setLon] = useState(-81.3579);
   const [lat, setLat] = useState(41.1537);
@@ -37,10 +38,12 @@ function App() {
             path="forecast"
             element={
               <Forecast
+                setInput={setInput}
                 setCity={setCity}
                 setLat={setLat}
                 setLon={setLon}
                 weather={weather}
+                input={input}
                 city={city}
               />
             }

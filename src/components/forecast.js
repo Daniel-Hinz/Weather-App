@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import PartlyCloudy from "../WeatherIcons/fill/all/partly-cloudy-day.svg";
-import SearchIcon from "../imgs/icons8-search-64.png";
-import { Weekly } from "./weekly";
 import axios from "axios";
+
+import { Weekly } from "./weekly";
+import SearchIcon from "../imgs/icons8-search-64.png";
+
+import PartlyCloudy from "../WeatherIcons/fill/all/partly-cloudy-day.svg";
 
 const weatherKey = `${process.env.REACT_APP_WEATHER_API_KEY}`;
 const locationKey = `${process.env.REACT_APP_LOCATION_API_KEY}`;
@@ -70,7 +72,15 @@ const getDirection = (angle) => {
   ];
 };
 
-export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
+export const Forecast = ({
+  setCity,
+  setInput,
+  setLat,
+  setLon,
+  weather,
+  input,
+  city,
+}) => {
   const [autocompleteCities, setAutocompleteCities] = useState([]);
 
   const handleChange = async (e) => {
@@ -93,7 +103,7 @@ export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
     );
     setLat(res.data.coord.lat);
     setLon(res.data.coord.lon);
-    setCity("");
+    setInput(city);
   };
 
   return (
@@ -138,7 +148,7 @@ export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
                 <div className="w-full bg-blue-400 text-white rounded-tl-xl">
                   <div className="pl-8">
                     <h2 className="font-bold text-3xl leading-none pb-1">
-                      {city}
+                      {input}
                     </h2>
                     <h3 className="leading-none pb-2 pl-1">
                       {months[new Date(weather.current.dt * 1000).getMonth()] +
@@ -208,6 +218,7 @@ export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
                       {Math.floor(
                         ((weather.current.feels_like - 273.15) * 9) / 5 + 32
                       )}
+                      °
                     </div>
                   </div>
                   <div className="flex justify-between mb-4 w-full">
@@ -223,7 +234,7 @@ export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
                       Humidity
                     </div>
                     <div className="w-auto text-right">
-                      {weather.current.humidity}
+                      {weather.current.humidity} %
                     </div>
                   </div>
                   <div className="flex justify-between mb-4 w-full">
