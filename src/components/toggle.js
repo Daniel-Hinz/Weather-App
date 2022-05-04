@@ -8,7 +8,7 @@ export const Toggle = () => {
 
   return (
     <div>
-      <div className="absolute top-0 right-0 mt-4 text-center">
+      <div className="absolute top-0 right-0 mt-4 mr-4 text-center">
         {theme === "dark" ? (
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}

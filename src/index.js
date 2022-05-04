@@ -10,7 +10,12 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider>
-        <App />
+        <body className="bg-white dark:bg-gray-900 transition-all">
+          <main>
+            <div className="absolute w-full right-0 top-0"></div>
+            <App />
+          </main>
+        </body>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>

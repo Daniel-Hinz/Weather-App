@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Weekly } from "./weekly";
+import axios from "axios";
 import SearchIcon from "../imgs/icons8-search-64.png";
 import Cloudy from "../WeatherIcons/fill/all/cloudy.svg";
 import Sun from "../WeatherIcons/fill/all/clear-day.svg";
-import axios from "axios";
 import PartlyCloudy from "../WeatherIcons/fill/all/partly-cloudy-day.svg";
+import Sunrise from "../WeatherIcons/line/all/sunrise.svg";
+import Sunset from "../WeatherIcons/line/all/sunset.svg";
 
 const weatherKey = `${process.env.REACT_APP_WEATHER_API_KEY}`;
 const locationKey = `${process.env.REACT_APP_LOCATION_API_KEY}`;
@@ -100,9 +102,9 @@ export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
 
   return (
     <>
-      <div className="FullPage min-h-screen ">
+      <div className="FullPage min-h-screen">
         <form className="Search" onSubmit={handleSubmit}>
-          <div className="box pt-6 w-3/4 mx-auto py-8">
+          <div className="box pt-14 w-3/4 mx-auto py-8">
             <div className="box-wrapper">
               <div className=" bg-white rounded-full flex items-center w-full p-3 shadow-sm border border-gray-200">
                 <button className="outline-none focus:outline-none">
@@ -134,19 +136,32 @@ export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
         </form>
 
         <main className="Forecast">
-          <div className="w-10/12 mb-16 mt-6 text-white m-auto bg-gradient-to-b from-teal-500 to-cyan-700 rounded-xl">
+          <div className="w-10/12 mb-16 mt-6 text-white shadow-lg m-auto bg-gradient-to-t from-blue-900 to-blue-500 dark:bg-gradient-to-t dark:from-slate-100 dark:to-slate-100 rounded-xl dark:text-black">
             <div className="flex flex-wrap w-full">
               <div className=" w-2/4 flex rounded-lg bg-auto">
                 <div className="w-full bg-blue-400 text-white rounded-tl-xl">
                   <div className="pl-8">
-                    <h2 className="font-bold text-3xl leading-none pb-1">
-                      {city}
+                    <h2 className="font-bold text-3xl leading-none pb-1 pt-4">
+                      {city} ,{" "}
+                      <span className="text-base font-normal leading-none pb-2 pl-1">
+                        {months[
+                          new Date(weather.current.dt * 1000).getMonth()
+                        ] +
+                          " " +
+                          new Date(weather.current.dt * 1000).getDate()}
+                      </span>
                     </h2>
-                    <h3 className="leading-none pb-2 pl-1">
-                      {months[new Date(weather.current.dt * 1000).getMonth()] +
-                        " " +
-                        new Date(weather.current.dt * 1000).getDate()}
-                    </h3>
+                    <div>
+                      <strong className="text-6xl block font-weight-bolder">
+                        {Math.floor(
+                          ((weather.current.temp - 273.15) * 9) / 5 + 32
+                        )}
+                        °
+                      </strong>
+                      <b className="text-2xl block font-bold">
+                        {weather.current.weather.main}
+                      </b>
+                    </div>
                   </div>
                   <div>
                     <img
@@ -155,53 +170,57 @@ export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
                       alt="weather-img"
                     />
                   </div>
-                  <div className="pl-8">
-                    <strong className="text-6xl block font-weight-bolder">
-                      {Math.floor(
-                        ((weather.current.temp - 273.15) * 9) / 5 + 32
-                      )}
-                      °
-                    </strong>
-                    <b className="text-2xl block font-bold">
-                      {weather.current.weather.main}
-                    </b>
+                  <div className="w-1/2 pl-6 float-left">
+                    <div className="flex w-1/2 float-right">
+                      <div>
+                        <p className="font-semibold">Max: </p>
+                      </div>
+                    </div>
+                    <div className="flex w-1/2">
+                      <div>
+                        <p className="font-semibold">Min: </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-1/2 float-right">
+                    <div className="flex w-1/2 float-right">
+                      <img className="w-14 h-14" src={Sunrise} />
+                      <div>
+                        {new Date(weather.current.sunrise * 1000).getHours() >
+                        12
+                          ? new Date(
+                              weather.current.sunrise * 1000
+                            ).getHours() - 12
+                          : new Date(weather.current.sunrise * 1000).getHours()}
+                        {new Date(weather.current.sunrise * 1000).getMinutes() <
+                        10
+                          ? ":0"
+                          : ":"}
+                        {new Date(weather.current.sunrise * 1000).getMinutes()}{" "}
+                        am
+                      </div>
+                    </div>
+                    <div className="flex w-1/2">
+                      <img className="w-14 h-14" src={Sunset} />
+                      <div>
+                        {new Date(weather.current.sunset * 1000).getHours() > 12
+                          ? new Date(weather.current.sunset * 1000).getHours() -
+                            12
+                          : new Date(weather.current.sunset * 1000).getHours()}
+                        {new Date(weather.current.sunset * 1000).getMinutes() <
+                        10
+                          ? ":0"
+                          : ":"}
+                        {new Date(weather.current.sunset * 1000).getMinutes()}{" "}
+                        pm
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div className="w-2/4 flex ml-0">
-                <div className="bg-gray-800 text-white p-8 w-full rounded-tr-xl">
-                  <div className="flex justify-between mb-4 w-full">
-                    <div className="w-auto font-bold uppercase text-90">
-                      Sunrise
-                    </div>
-                    <div className="w-auto text-right">
-                      {new Date(weather.current.sunrise * 1000).getHours() > 12
-                        ? new Date(weather.current.sunrise * 1000).getHours() -
-                          12
-                        : new Date(weather.current.sunrise * 1000).getHours()}
-                      {new Date(weather.current.sunrise * 1000).getMinutes() <
-                      10
-                        ? ":0"
-                        : ":"}
-                      {new Date(weather.current.sunrise * 1000).getMinutes()} am
-                    </div>
-                  </div>
-                  <div className="flex justify-between mb-4 w-full">
-                    <div className="w-auto font-bold uppercase text-90">
-                      Sunset
-                    </div>
-                    <div className="w-auto text-right">
-                      {new Date(weather.current.sunset * 1000).getHours() > 12
-                        ? new Date(weather.current.sunset * 1000).getHours() -
-                          12
-                        : new Date(weather.current.sunset * 1000).getHours()}
-                      {new Date(weather.current.sunset * 1000).getMinutes() < 10
-                        ? ":0"
-                        : ":"}
-                      {new Date(weather.current.sunset * 1000).getMinutes()} pm
-                    </div>
-                  </div>
+                <div className="bg-gray-800 dark:bg-gray-300 dark:text-black text-white p-8 w-full rounded-tr-xl">
                   <div className="flex justify-between mb-4 w-full">
                     <div className="w-auto font-bold uppercase text-90">
                       Feels Like

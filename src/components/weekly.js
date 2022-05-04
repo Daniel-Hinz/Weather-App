@@ -2,6 +2,18 @@ import React from "react";
 import Cloudy from "../WeatherIcons/fill/all/cloudy.svg";
 import Sun from "../WeatherIcons/fill/all/clear-day.svg";
 import PartlyCloudy from "../WeatherIcons/fill/all/partly-cloudy-day.svg";
+import Moon from "../WeatherIcons/fill/all/clear-night.svg";
+import PartlyCloudyNight from "../WeatherIcons/fill/all/partly-cloudy-night.svg";
+import Rain from "../WeatherIcons/fill/all/rain.svg";
+import Overcast from "../WeatherIcons/fill/all/overcast.svg";
+import RainDay from "../WeatherIcons/fill/all/partly-cloudy-day-rain.svg";
+import RainNight from "../WeatherIcons/fill/all/partly-cloudy-night-rain.svg";
+import Thunderstorm from "../WeatherIcons/fill/all/thunderstorms.svg";
+import Mist from "../WeatherIcons/fill/all/mist.svg";
+import Snow from "../WeatherIcons/fill/all/snow.svg";
+
+import Wind from "../WeatherIcons/line/all/wind.svg";
+import Humidity from "../WeatherIcons/fill/all/raindrop.svg";
 
 const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 const months = [
@@ -23,39 +35,39 @@ const getImage = (val) => {
     case "01d":
       return Sun;
     case "01n":
-      return PartlyCloudy;
+      return Moon;
     case "02d":
       return PartlyCloudy;
     case "02n":
-      return PartlyCloudy;
+      return PartlyCloudyNight;
     case "03d":
-      return PartlyCloudy;
+      return Cloudy;
     case "03n":
-      return PartlyCloudy;
+      return Cloudy;
     case "04d":
-      return PartlyCloudy;
+      return Overcast;
     case "04n":
-      return PartlyCloudy;
+      return Overcast;
     case "09d":
-      return PartlyCloudy;
+      return Rain;
     case "09n":
-      return PartlyCloudy;
+      return Rain;
     case "10d":
-      return PartlyCloudy;
+      return RainDay;
     case "10n":
-      return PartlyCloudy;
+      return RainNight;
     case "11d":
-      return PartlyCloudy;
+      return Thunderstorm;
     case "11n":
-      return PartlyCloudy;
+      return Thunderstorm;
     case "13d":
-      return PartlyCloudy;
+      return Snow;
     case "13n":
-      return PartlyCloudy;
+      return Snow;
     case "50d":
-      return PartlyCloudy;
+      return Mist;
     case "50n":
-      return PartlyCloudy;
+      return Mist;
     default:
       return Cloudy;
   }
@@ -69,11 +81,11 @@ const getDirection = (angle) => {
 
 export const Weekly = ({ weather }) => {
   return (
-    <div className="weekly-wrapper">
+    <div className="flex justify-center w-full items-center">
       {weather.daily.map((day, i) => {
         return i > 0 && i < 6 ? (
-          <div className="flex" key={i}>
-            <div className="flex flex-col p-4 w-full max-w-xs border-white border-solid border-l">
+          <div className="flex w-full" key={i}>
+            <div className="flex flex-col p-4 w-full max-w-xs border-black border-solid border-l border-r">
               <div className="font-bold text-xl">
                 {months[new Date(day.dt * 1000).getMonth()] +
                   " " +
@@ -108,14 +120,18 @@ export const Weekly = ({ weather }) => {
               </div>
               <div className="flex flex-row justify-evenly mt-6">
                 <div className="flex flex-col items-center">
-                  <div className="font-medium text-sm">Wind</div>
+                  <div className="font-medium text-sm">
+                    <img className="w-10 h-10" src={Wind} />
+                  </div>
                   <div className="text-sm ">
                     {day.wind_speed} mph
                     {" " + getDirection(day.wind_deg)}
                   </div>
                 </div>
                 <div className="flex flex-col items-center">
-                  <div className="font-medium text-sm">Humidity</div>
+                  <div className="font-medium text-sm">
+                    <img className="w-10 h-10" src={Humidity} />
+                  </div>
                   <div className="text-sm ">{day.humidity}%</div>
                 </div>
               </div>
