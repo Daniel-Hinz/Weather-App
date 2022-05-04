@@ -71,7 +71,6 @@ export const Forecast = ({
   locationKey,
   weatherKey,
   setCity,
-  setInput,
   setLat,
   setLon,
   weather,
@@ -100,7 +99,6 @@ export const Forecast = ({
     );
     setLat(res.data.coord.lat);
     setLon(res.data.coord.lon);
-    setInput(city);
   };
 
   return (

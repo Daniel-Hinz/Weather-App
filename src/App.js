@@ -25,6 +25,7 @@ function App() {
         `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${weatherKey}`
       );
       setWeather(res.data);
+      setInput(city);
     };
     setData();
   }, [lat, lon]);
@@ -41,7 +42,6 @@ function App() {
               <Forecast
                 locationKey={locationKey}
                 weatherKey={weatherKey}
-                setInput={setInput}
                 setCity={setCity}
                 setLat={setLat}
                 setLon={setLon}
