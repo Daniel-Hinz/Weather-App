@@ -2,7 +2,16 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Weekly } from "./weekly";
 import SearchIcon from "../imgs/icons8-search-64.png";
+import Sun from "../WeatherIcons/fill/all/clear-day.svg";
+import Moon from "../WeatherIcons/fill/all/clear-night.svg";
 import PartlyCloudy from "../WeatherIcons/fill/all/partly-cloudy-day.svg";
+import PartlyCloudyNight from "../WeatherIcons/fill/all/partly-cloudy-night.svg";
+import Cloudy from "../WeatherIcons/fill/all/cloudy.svg";
+import Rain from "../WeatherIcons/fill/all/rain.svg";
+import ThunderStorm from "../WeatherIcons/fill/all/thunderstorms-day.svg";
+import ThunderStormNight from "../WeatherIcons/fill/all/thunderstorms-night.svg";
+import Snow from "../WeatherIcons/fill/all/snow.svg";
+import Mist from "../WeatherIcons/fill/all/mist.svg";
 
 const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 const months = [
@@ -22,43 +31,43 @@ const months = [
 const getImage = (val) => {
   switch (val) {
     case "01d":
-      return PartlyCloudy;
+      return Sun;
     case "01n":
-      return PartlyCloudy;
+      return Moon;
     case "02d":
       return PartlyCloudy;
     case "02n":
-      return PartlyCloudy;
+      return PartlyCloudyNight;
     case "03d":
-      return PartlyCloudy;
+      return Cloudy;
     case "03n":
-      return PartlyCloudy;
+      return Cloudy;
     case "04d":
       return PartlyCloudy;
     case "04n":
-      return PartlyCloudy;
+      return PartlyCloudyNight;
     case "09d":
-      return PartlyCloudy;
+      return Rain;
     case "09n":
-      return PartlyCloudy;
+      return Rain;
     case "10d":
-      return PartlyCloudy;
+      return Rain;
     case "10n":
-      return PartlyCloudy;
+      return Rain;
     case "11d":
-      return PartlyCloudy;
+      return ThunderStorm;
     case "11n":
-      return PartlyCloudy;
+      return ThunderStormNight;
     case "13d":
-      return PartlyCloudy;
+      return Snow;
     case "13n":
-      return PartlyCloudy;
+      return Snow;
     case "50d":
-      return PartlyCloudy;
+      return Mist;
     case "50n":
-      return PartlyCloudy;
+      return Mist;
     default:
-      return PartlyCloudy;
+      return Cloudy;
   }
 };
 const getDirection = (angle) => {
