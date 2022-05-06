@@ -79,7 +79,7 @@ const getDirection = (angle) => {
   ];
 };
 
-export const Weekly = ({ weather }) => {
+export const Weekly = ({ getDirection, getImage, weather, months }) => {
   return (
     <div className="flex justify-center w-full items-center">
       {weather.daily.map((day, i) => {

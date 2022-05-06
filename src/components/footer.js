@@ -123,7 +123,7 @@ export const Footer = () => {
                     <li>
                       <a
                         className=" hover: font-semibold block pb-2 text-sm"
-                        href="https://tailwindcss.com/"
+                        href="https://tailwindui.com/documentation"
                       >
                         Tailwind
                       </a>
@@ -131,7 +131,7 @@ export const Footer = () => {
                     <li>
                       <a
                         className=" hover: font-semibold block pb-2 text-sm"
-                        href="https://openweathermap.org/"
+                        href="https://openweathermap.org/api"
                       >
                         Open Weather API
                       </a>

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Weekly } from "./weekly";
 import axios from "axios";
+import { Weekly } from "./weekly";
 import SearchIcon from "../imgs/icons8-search-64.png";
-import Cloudy from "../WeatherIcons/fill/all/cloudy.svg";
 import Sun from "../WeatherIcons/fill/all/clear-day.svg";
+import Cloudy from "../WeatherIcons/fill/all/cloudy.svg";
 import PartlyCloudy from "../WeatherIcons/fill/all/partly-cloudy-day.svg";
 import Moon from "../WeatherIcons/fill/all/clear-night.svg";
 import PartlyCloudyNight from "../WeatherIcons/fill/all/partly-cloudy-night.svg";
@@ -84,10 +84,19 @@ const getDirection = (angle) => {
   ];
 };
 
-export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
+export const Forecast = ({
+  locationKey,
+  weatherKey,
+  setCity,
+  setLat,
+  setLon,
+  weather,
+  input,
+  city,
+}) => {
   const [autocompleteCities, setAutocompleteCities] = useState([]);
 
-  const handleOnChange = async (e) => {
+  const handleChange = async (e) => {
     setCity(e.target.value);
     await axios
       .get(
@@ -107,7 +116,6 @@ export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
     );
     setLat(res.data.coord.lat);
     setLon(res.data.coord.lon);
-    setCity("");
   };
 
   return (
@@ -128,7 +136,7 @@ export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
                   className="w-full pl-4 text-sm outline-none focus:outline-none bg-transparent"
                   pattern={autocompleteCities.join("|")}
                   placeholder="Search by Location"
-                  onChange={handleOnChange}
+                  onChange={handleChange}
                   autoComplete="off"
                   name="location"
                   type="search"
@@ -151,15 +159,8 @@ export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
               <div className=" w-2/4 flex rounded-lg bg-auto">
                 <div className="w-full bg-gradient-to-b from-white to-blue-300 dark:bg-cyan-100 text-black rounded-tl-xl dark:bg-gradient-to-t dark:from-blue-900  dark:to-slate-900 dark:text-white">
                   <div className="pl-8">
-                    <h2 className="font-bold text-3xl leading-none pb-1 pt-4">
-                      {city} ,{" "}
-                      <span className="text-base font-normal leading-none pb-2 pl-1">
-                        {months[
-                          new Date(weather.current.dt * 1000).getMonth()
-                        ] +
-                          " " +
-                          new Date(weather.current.dt * 1000).getDate()}
-                      </span>
+                    <h2 className="font-bold text-3xl leading-none pb-1">
+                      {input}
                     </h2>
                     <div>
                       <strong className="text-6xl block font-weight-bolder">
@@ -239,6 +240,7 @@ export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
                       {Math.floor(
                         ((weather.current.feels_like - 273.15) * 9) / 5 + 32
                       )}
+                      °
                     </div>
                   </div>
                   <div className="flex justify-between mb-4 w-full bg-white dark:bg-zinc-800 p-2 rounded">
@@ -254,7 +256,7 @@ export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
                       Humidity
                     </div>
                     <div className="w-auto text-right">
-                      {weather.current.humidity}
+                      {weather.current.humidity} %
                     </div>
                   </div>
                   <div className="flex justify-between mb-4 w-full bg-white dark:bg-zinc-800 p-2 rounded">
@@ -302,7 +304,12 @@ export const Forecast = ({ setCity, setLat, setLon, weather, city }) => {
               </div>
             </div>
 
-            <Weekly weather={weather} />
+            <Weekly
+              getDirection={getDirection}
+              getImage={getImage}
+              weather={weather}
+              months={months}
+            />
           </div>
         </main>
       </div>
