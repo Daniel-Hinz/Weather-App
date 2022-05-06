@@ -80,12 +80,24 @@ export const Forecast = ({
                   <div className="w-1/2 pl-6 float-left">
                     <div className="flex w-1/2 float-right">
                       <div>
-                        <p className="font-semibold">Max: </p>
+                        <p className="font-semibold">
+                          Max:{" "}
+                          {Math.floor(
+                            ((weather.daily[0].temp.max - 273.15) * 9) / 5 + 32
+                          )}
+                          °
+                        </p>
                       </div>
                     </div>
                     <div className="flex w-1/2">
                       <div>
-                        <p className="font-semibold">Min: </p>
+                        <p className="font-semibold">
+                          Min:
+                          {Math.floor(
+                            ((weather.daily[0].temp.min - 273.15) * 9) / 5 + 32
+                          )}
+                          °
+                        </p>
                       </div>
                     </div>
                   </div>
