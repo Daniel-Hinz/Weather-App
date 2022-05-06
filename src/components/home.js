@@ -1,11 +1,19 @@
 import React from "react";
-import Sun from "../WeatherIcons/fill/all/clear-day.svg";
 import SearchIcon from "../imgs/icons8-search-64.png";
 
-export const Home = () => {
+export const Home = ({
+  handleSubmit,
+  handleChange,
+  getImage,
+  getDirection,
+  weather,
+  cities,
+  input,
+  days,
+}) => {
   return (
     <div className="bg-gray-200 pt-12 dark:bg-gray-900 pb-6">
-      <form classNameName="Search">
+      <form classNameName="Search" onSubmit={handleSubmit}>
         <div className="box pt-6 w-3/4 mx-auto py-8">
           <div className="box-wrapper">
             <div className=" bg-white rounded-full flex items-center w-full p-3 shadow-sm border border-gray-200 drop-shadow">
@@ -13,58 +21,80 @@ export const Home = () => {
                 <img
                   src={SearchIcon}
                   className=" w-6 text-gray-600 h-5 cursor-pointer"
+                  alt="weather icon"
                 />
               </button>
               <input
-                type="search"
-                placeholder="Search by Location"
-                x-model="q"
                 className="w-full pl-4 text-sm outline-none focus:outline-none bg-transparent"
+                placeholder="Search by Location"
+                pattern={cities.join("|")}
+                onChange={handleChange}
+                autoComplete="off"
+                name="location"
+                type="search"
+                list="places"
+                x-model="q"
               />
-              <div className="select border-l border-solid border-gray-700">
-                <select
-                  name=""
-                  id=""
-                  x-model="image_type"
-                  className="text-sm outline-none focus:outline-none bg-transparent"
-                >
-                  <option value="all" selected>
-                    Metric
-                  </option>
-                  <option value="photo">Celcius</option>
-                  <option value="illustration">Fareneheit</option>
-                </select>
-              </div>
+              <datalist id="places">
+                {cities.map((input, i) => (
+                  <option value={input} key={i}></option>
+                ))}
+              </datalist>
             </div>
           </div>
         </div>
       </form>
       <div className="flex p-6">
         <div className="w-2/5 shadow-xl p-6 bg-white mr-6 rounded drop-shadow-xl dark:bg-gradient-to-b dark:from-slate-900  dark:to-slate-700 dark:border dark:text-white">
-          <h1 className="text-3xl font-semibold uppercase">Monday</h1>
+          <h1 className="text-3xl font-semibold uppercase">
+            {days[new Date(weather.current.dt * 1000).getDay()]}
+          </h1>
           <div>
             <div className="text-gray-500 dark:text-white">
               <p className="font-light text-sm float-left">Today's Weather</p>
-              <p className="font-light text-sm float-right">
-                Kent, 04, May, 2022
-              </p>
+              <p className="font-light text-sm float-right">{input}</p>
             </div>
           </div>
           <div>
-            <img className="m-4" src={Sun} />
+            <img
+              className="m-4"
+              src={getImage(weather.current.weather[0].icon)}
+              alt="weather icon"
+            />
           </div>
           <div className="flex w-4/5 m-auto text-gray-500 dark:text-white">
             <div className="w-1/2 text-center">
-              <h2 className="text-5xl font-semibold">21°</h2>
-              <p className="font-light">Sunny</p>
+              <h2 className="text-5xl font-semibold">
+                {Math.floor((weather.current.temp - 273.15) * 9) / 5 + 32}°
+              </h2>
+              <p className="font-light">{weather.current.weather[0].main}</p>
             </div>
             <div className="w-1/2">
-              <p className="font-light">Mostly Clear</p>
-              <p className="font-light">Humidity</p>
-              <p className="font-light">Wind</p>
+              <p className="font-light">
+                {weather.current.weather[0].description}
+              </p>
+              <p className="font-light">Humidity: {weather.current.humidity}</p>
+              <p className="font-light">
+                Wind: {weather.current.wind_speed} mph
+                {" " + getDirection(weather.current.wind_deg)}
+              </p>
               <div className="flex">
-                <p className="font-light">Min:</p>
-                <p className="font-light ml-4">Max:</p>
+                <p className="font-light">
+                  Min:
+                  {" " +
+                    Math.floor(
+                      ((weather.daily[0].temp.min - 273.15) * 9) / 5 + 32
+                    )}
+                  °{" "}
+                </p>
+                <p className="font-light ml-4">
+                  Max:
+                  {" " +
+                    Math.floor(
+                      ((weather.daily[0].temp.max - 273.15) * 9) / 5 + 32
+                    )}
+                  °
+                </p>
               </div>
             </div>
           </div>
@@ -73,31 +103,25 @@ export const Home = () => {
           <div className="shadow-xl drop-shadow-xl p-6 bg-white rounded dark:bg-gradient-to-b dark:from-slate-900  dark:to-slate-700 dark:border dark:text-white">
             <h3 className="font-semibold text-xl pb-4">Weekly Weather</h3>
             <div className="flex text-gray-500 dark:text-white">
-              <div className="text-center w-full">
-                <p className="font-light">Tuesday</p>
-                <img className="w-24 h-24 m-auto" src={Sun} />
-                <p className="font-light">21°</p>
-              </div>
-              <div className="text-center w-full">
-                <p className="font-light">Tuesday</p>
-                <img className="w-24 h-24 m-auto" src={Sun} />
-                <p className="font-light">21°</p>
-              </div>
-              <div className="text-center w-full">
-                <p className="font-light">Tuesday</p>
-                <img className="w-24 h-24 m-auto" src={Sun} />
-                <p className="font-light">21°</p>
-              </div>
-              <div className="text-center w-full">
-                <p className="font-light">Tuesday</p>
-                <img className="w-24 h-24 m-auto" src={Sun} />
-                <p className="font-light">21°</p>
-              </div>
-              <div className="text-center w-full">
-                <p className="font-light">Tuesday</p>
-                <img className="w-24 h-24 m-auto" src={Sun} />
-                <p className="font-light">21°</p>
-              </div>
+              {weather.daily.map((day, i) =>
+                i > 0 && i < 6 ? (
+                  <div className="text-center w-full" key={i}>
+                    <p className="font-light">
+                      {days[new Date(day.dt * 1000).getDay()]}
+                    </p>
+                    <img
+                      className="w-24 h-24 m-auto"
+                      src={getImage(day.weather[0].icon)}
+                      alt="weather icon"
+                    />
+                    <p className="font-light">
+                      {Math.floor(((day.temp.day - 273.15) * 9) / 5 + 32)}°
+                    </p>
+                  </div>
+                ) : (
+                  <></>
+                )
+              )}
             </div>
           </div>
           <div className="shadow-xl drop-shadow-xl mt-4 p-6 bg-white flex rounded dark:bg-gradient-to-tr dark:from-slate-900  dark:to-slate-700 dark:border dark:text-white">
@@ -105,6 +129,7 @@ export const Home = () => {
               <img
                 className="dark:border-4 dark:border-white w-11/12"
                 src="https://cdn.cnn.com/cnnnext/dam/assets/200721074844-daily-weather-video-heat-severe-storms-tropical-rain-gulf-00003905.jpg"
+                alt="weather icon"
               />
             </div>
             <div>
