@@ -51,10 +51,10 @@ const days = [
 ];
 
 function App() {
-  const [weather, setWeather] = useState();
+  const [city, setCity] = useState("Kent, Ohio, United States");
   const [input, setInput] = useState("Kent, Ohio, United States");
+  const [weather, setWeather] = useState();
   const [cities, setCities] = useState([]);
-  const [city, setCity] = useState("Kent");
   const [lon, setLon] = useState(-81.3579);
   const [lat, setLat] = useState(41.1537);
 

@@ -65,7 +65,7 @@ export const Home = ({
           <div className="flex w-4/5 m-auto text-gray-500 dark:text-white">
             <div className="w-1/2 text-center">
               <h2 className="text-5xl font-semibold">
-                {Math.floor((weather.current.temp - 273.15) * 9) / 5 + 32}°
+                {Math.floor(((weather.current.temp - 273.15) * 9) / 5 + 32)}°
               </h2>
               <p className="font-light">{weather.current.weather[0].main}</p>
             </div>
@@ -85,7 +85,7 @@ export const Home = ({
                     Math.floor(
                       ((weather.daily[0].temp.min - 273.15) * 9) / 5 + 32
                     )}
-                  °{" "}
+                  °
                 </p>
                 <p className="font-light ml-4">
                   Max:
