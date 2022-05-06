@@ -1,12 +1,14 @@
 import React from "react";
+import Wind from "../WeatherIcons/line/all/wind.svg";
+import Humidity from "../WeatherIcons/fill/all/raindrop.svg";
 
 export const Weekly = ({ getDirection, getImage, weather, months }) => {
   return (
-    <div className="weekly-wrapper">
+    <div className="flex justify-center w-full items-center">
       {weather.daily.map((day, i) => {
         return i > 0 && i < 6 ? (
-          <div className="flex" key={i}>
-            <div className="flex flex-col p-4 w-full max-w-xs border-white border-solid border-l">
+          <div className="flex w-full" key={i}>
+            <div className="flex flex-col p-4 w-full max-w-xs border-slate-500 dark:border-white border-solid border-l border-r">
               <div className="font-bold text-xl">
                 {months[new Date(day.dt * 1000).getMonth()] +
                   " " +
@@ -41,14 +43,22 @@ export const Weekly = ({ getDirection, getImage, weather, months }) => {
               </div>
               <div className="flex flex-row justify-evenly mt-6">
                 <div className="flex flex-col items-center">
-                  <div className="font-medium text-sm">Wind</div>
+                  <div className="font-medium text-sm">
+                    <img className="w-10 h-10" src={Wind} alt="weather icon" />
+                  </div>
                   <div className="text-sm ">
                     {day.wind_speed} mph
                     {" " + getDirection(day.wind_deg)}
                   </div>
                 </div>
                 <div className="flex flex-col items-center">
-                  <div className="font-medium text-sm">Humidity</div>
+                  <div className="font-medium text-sm">
+                    <img
+                      className="w-10 h-10"
+                      src={Humidity}
+                      alt="weather icon"
+                    />
+                  </div>
                   <div className="text-sm ">{day.humidity}%</div>
                 </div>
               </div>

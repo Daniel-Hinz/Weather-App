@@ -8,10 +8,15 @@ import { BrowserRouter } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider>
+        <body className="bg-gray-50 dark:bg-gray-900 transition-all">
+          <main>
+            <div className="absolute w-full right-0 top-0"></div>
+            <App />
+          </main>
+        </body>
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
