@@ -85,7 +85,7 @@ export const Weekly = ({ weather }) => {
       {weather.daily.map((day, i) => {
         return i > 0 && i < 6 ? (
           <div className="flex w-full" key={i}>
-            <div className="flex flex-col p-4 w-full max-w-xs border-black border-solid border-l border-r">
+            <div className="flex flex-col p-4 w-full max-w-xs border-slate-500 dark:border-white border-solid border-l border-r">
               <div className="font-bold text-xl">
                 {months[new Date(day.dt * 1000).getMonth()] +
                   " " +

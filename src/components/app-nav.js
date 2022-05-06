@@ -5,7 +5,7 @@ export const AppNav = () => {
   return (
     <>
       <nav>
-        <ul className="flex justify-center bg-gray-900 text-gray-50 uppercase p-6 h-24 dark:bg-white dark:text-gray-800">
+        <ul className="flex justify-center bg-gray-900 text-gray-50 uppercase p-6 h-24 dark:bg-slate-800 dark:border-b dark:border-white">
           <li className="mt-3 text-xl">
             <Link to="/forecast">Forecast</Link>
           </li>

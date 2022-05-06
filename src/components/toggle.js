@@ -12,7 +12,7 @@ export const Toggle = () => {
         {theme === "dark" ? (
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="text-gray-500 dark:text-gray-300 bg-gray-900 shadow-none p-2 focus:outline-none text-lg rounded-full outline-none ring-transparent cursor-pointer"
+            className="text-black dark:text-gray-300 bg-gray-900 shadow-none p-2 focus:outline-none text-lg rounded-full outline-none ring-transparent cursor-pointer"
           >
             <img
               src={DarkToggle}
@@ -24,7 +24,7 @@ export const Toggle = () => {
         ) : (
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="text-gray-500 dark:text-gray-300 bg-white focus:outline-none shadow-none p-2 text-lg rounded-full outline-none ring-transparent cursor-pointer"
+            className="text-black dark:text-gray-300 bg-gray-200 focus:outline-none shadow-none p-2 text-lg rounded-full outline-none ring-transparent cursor-pointer"
           >
             <img
               src={LightToggle}
