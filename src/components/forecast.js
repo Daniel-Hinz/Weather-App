@@ -55,7 +55,7 @@ export const Forecast = ({
               <div className=" w-2/4 flex rounded-lg bg-auto">
                 <div className="w-full bg-gradient-to-b from-white to-blue-300 dark:bg-cyan-100 text-black rounded-tl-xl dark:bg-gradient-to-t dark:from-blue-900  dark:to-slate-900 dark:text-white">
                   <div className="pl-8">
-                    <h2 className="font-bold text-3xl leading-none pb-1">
+                    <h2 className="font-bold text-3xl leading-none pb-1 mt-4">
                       {input}
                     </h2>
                     <div>

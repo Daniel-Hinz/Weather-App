@@ -15,7 +15,7 @@ export const AppNav = () => {
           <div className="w-72 h-28 rounded-full bg-white p-6 pt-8 mx-24 -mt-3 border-4 border-solid text-gray-900 text-center text-3xl border-gray-900 dark:border-white dark:text-gray-50 dark:bg-gray-900">
             <Link to={link.pathname}>
               {link.pathname === "/"
-                ? "Home"
+                ? "Weather App"
                 : link.pathname.substring(1, link.pathname.length)}
             </Link>
           </div>
