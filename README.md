@@ -3,9 +3,11 @@ This weather application was developed as a final project for our Spring 2022 Mo
 
 ## Installation
 In order to being using our application, the user must first navigate to the location in their terminal they would like their source code to be, and then run the following command:
+
 `git clone https://github.com/Daniel-Hinz/Weather-App.git`
 
-After cloning the repository install the required packages with the command: 
+After cloning the repository install the required packages with the command:
+ 
 `npm install`
 
 From here, the user must then create a '.env' file and populate it with both an OpenWeatherMap and an Mapbox api key, following the format.
