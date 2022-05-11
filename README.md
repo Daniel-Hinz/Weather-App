@@ -15,6 +15,7 @@ REACT_APP_WEATHER_API_KEY = your_openweathermap_api_key
 REACT_APP_LOCATION_API_KEY = your_mapboc_api_key
 
 Finally, run the command:
+
 `npm start`
 
 ### Usage
