@@ -12,8 +12,9 @@ After cloning the repository install the required packages with the command:
 
 From here, the user must then create a '.env' file and populate it with both an OpenWeatherMap and an Mapbox api key, following the format.
 
-`REACT_APP_WEATHER_API_KEY = your_openweathermap_api_key
-REACT_APP_LOCATION_API_KEY = your_mapbox_api_key`
+`REACT_APP_WEATHER_API_KEY = your_openweathermap_api_key`
+
+`REACT_APP_LOCATION_API_KEY = your_mapbox_api_key`
 
 Finally, run the command:
 
